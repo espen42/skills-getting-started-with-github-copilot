@@ -17,6 +17,9 @@ document.addEventListener("DOMContentLoaded", () => {
       Object.entries(activities).forEach(([name, details]) => {
         const activityCard = document.createElement("div");
         activityCard.className = "activity-card";
+        activityCard.tabIndex = 0;
+        activityCard.setAttribute("role", "button");
+        activityCard.setAttribute("aria-label", `Select ${name}`);
 
         const spotsLeft = details.max_participants - details.participants.length;
 
@@ -26,6 +29,19 @@ document.addEventListener("DOMContentLoaded", () => {
           <p><strong>Schedule:</strong> ${details.schedule}</p>
           <p><strong>Availability:</strong> ${spotsLeft} spots left</p>
         `;
+
+        const selectActivity = () => {
+          activitySelect.value = name;
+          activitySelect.focus();
+        };
+
+        activityCard.addEventListener("click", selectActivity);
+        activityCard.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            selectActivity();
+          }
+        });
 
         activitiesList.appendChild(activityCard);
 

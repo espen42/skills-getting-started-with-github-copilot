@@ -63,6 +63,19 @@ section h3 {
   border: 1px solid #ddd;
   border-radius: 5px;
   background-color: #f9f9f9;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+}
+
+.activity-card:hover {
+  transform: translateY(-1px);
+  border-color: #9fa8da;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+.activity-card:focus-visible {
+  outline: 3px solid #9fa8da;
+  outline-offset: 2px;
 }
 
 .activity-card h4 {
